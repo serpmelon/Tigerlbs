@@ -1,0 +1,16 @@
+spring:  
+  profiles:
+    active: dev
+  application:
+    name: qhd_www
+  resources:
+    cache-period: 1
+  http: 
+    multipart: 
+      enabled: aatrue  
+      file-size-threshold: 0       
+      max-file-size: 500Mb 
+      max-request-size: 500Mb 
+      resolve-lazily: false 
+yml: 
+  age: www
