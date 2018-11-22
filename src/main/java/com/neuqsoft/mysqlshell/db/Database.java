@@ -27,7 +27,6 @@ public class Database {
 		ResultSet result = pstmt.executeQuery();
 		while (result.next()) {
 
-			System.out.println(result.getString(1));
 			return result.getString(1);
 		}
 		return result.getString(1);
