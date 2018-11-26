@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +24,25 @@ public class Database {
 
 	public String query(String sql) throws SQLException, ClassNotFoundException {
 
+		return query(sql, null);
+	}
+
+	public String query(String sql, List<Object> parameters)
+			throws SQLException, ClassNotFoundException {
+
 		Connection connection = connectionManager.getConnection();
 		PreparedStatement pstmt = connection.prepareStatement(sql);
+
+		if (parameters != null) {
+			parameters.forEach(item -> {
+				try {
+					pstmt.setObject(1, item);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			});
+		}
+
 		ResultSet result = pstmt.executeQuery();
 		while (result.next()) {
 
