@@ -20,7 +20,8 @@ public class DatabaseTest {
 	@Test
 	public void queryTest() throws ClassNotFoundException, SQLException {
 
-		String sql = "select * from t_user";
+		String sql = "select age from t_user where name = ?";
 		assertNotNull(base.query(sql));
+		assertEquals(21, base.query(sql));
 	}
 }

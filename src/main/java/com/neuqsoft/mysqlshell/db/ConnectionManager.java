@@ -4,15 +4,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
+// 指定配置文件，classpath路径根为src/main/resources/
+// @PropertySource只能读取properties文件
+@PropertySource({ "classpath:application.properties" })
 public class ConnectionManager {
 
-	private final String driver = "com.mysql.jdbc.Driver";
-	private final String url = "jdbc:mysql://127.0.0.1:3306/hlwjzwfw";
-	private final String username = "root";
-	private final String password = "123456";
+	@Value("${spring.database.driver}")
+	private String driver;
+	@Value("${spring.database.url}")
+	private String url;
+	@Value("${spring.database.name}")
+	private String username;
+	@Value("${spring.database.password}")
+	private String password;
 
 	public Connection getConnection() {
 
