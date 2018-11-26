@@ -24,7 +24,6 @@ public class App {
 		context.register(Database.class);
 		context.refresh();
 		Database base = (Database) context.getBean("Database");
-		System.out.println(base.a);
 		try {
 			base.insert();
 		} catch (ClassNotFoundException e) {

@@ -20,7 +20,6 @@ public class DatabaseTest {
 	@Test
 	public void queryTest() throws ClassNotFoundException, SQLException {
 
-		assertEquals("123", base.a);
 		String sql = "select * from t_user";
 		assertNotNull(base.query(sql));
 	}
